@@ -16,7 +16,7 @@
 	<appender name="rootLogFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="threshold" value="info" />
 		<param name="Encoding" value="UTF-8" />
-		<param name="file" value="${log_dir_root}/open/open.log" />
+		<param name="file" value="${log_dir_root}/solar/solar.log" />
 		<param name="append" value="true" />
 		<param name="datePattern" value="'.'yyyy-MM-dd" />
 		<layout class="org.apache.log4j.PatternLayout">

@@ -11,7 +11,7 @@
 	</bean>
 	<!-- End JMS公共配置 -->
 
-	<bean id="postCommentCountContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	<bean id="ipContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="autoStartup" value="${ipJmsSwitch}" />
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destination" ref="ipQueue" />
