@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jakarta.apache.org/log4j/ ">
+
+	<appender class="org.apache.log4j.ConsoleAppender" name="rootLogStdoutAppender">
+		<param name="threshold" value="info" />
+		<param value="UTF-8" name="Encoding" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%C{1}] %m%n"
+				name="ConversionPattern" />
+		</layout>
+	</appender>
+
+	<appender name="rootLogFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="threshold" value="info" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="file" value="${log_dir_root}/open/open.log" />
+		<param name="append" value="true" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="bigdataAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="datePattern" value="'.'yyyyMMddHH" />
+		<param name="file" value="${log_dir_root}/bigdata/bigdata.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+
+	<logger name="bigdata_log_name" additivity="false">
+		<level value="info" />
+		<appender-ref ref="bigdataAppender" />
+	</logger>
+	
+	<root>
+		<level value="info" />
+		<appender-ref ref="${root_log_appender}" />
+	</root>
+</log4j:configuration>

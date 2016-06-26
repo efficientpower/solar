@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+	<!-- JMS公共配置 -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="0" />
+	</bean>
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${jms.brokerurl}" />
+	</bean>
+	<!-- End JMS公共配置 -->
+
+	<bean id="postCommentCountContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="autoStartup" value="${ipJmsSwitch}" />
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="ipQueue" />
+		<property name="messageListener" ref="ipMessageListener" />
+	</bean>
+	<bean id="ipQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="ip-queue" />
+	</bean>
+
+</beans>
