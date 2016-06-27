@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://jakarta.apache.org/log4j/ ">
 
-	<appender class="org.apache.log4j.ConsoleAppender" name="rootLogStdoutAppender">
+	<appender name="rootLogStdoutAppender" class="org.apache.log4j.ConsoleAppender" >
 		<param name="threshold" value="info" />
 		<param value="UTF-8" name="Encoding" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -28,7 +28,7 @@
 		<param name="append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="datePattern" value="'.'yyyyMMddHH" />
-		<param name="file" value="${log_dir_root}/bigdata/bigdata.log" />
+		<param name="file" value="${log_dir_root}/solar/bigdata/bigdata.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%m%n" />
 		</layout>
@@ -41,6 +41,7 @@
 	
 	<root>
 		<level value="info" />
-		<appender-ref ref="${root_log_appender}" />
+		<appender-ref ref="rootLogStdoutAppender" />
+		<appender-ref ref="rootLogFileAppender"/>
 	</root>
 </log4j:configuration>
