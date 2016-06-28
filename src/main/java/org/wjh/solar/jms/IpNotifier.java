@@ -16,30 +16,30 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class IpNotifier {
-	
-	private static final Log logger = LogFactory.getLog(IpNotifier.class);
-	
-	@Autowired
-	@Qualifier("jmsTemplate")
-	private JmsTemplate jmsTemplate;
-	@Autowired
-	@Qualifier("ipQueue")
-	private Destination destination; 
-	
-	public void send(final String ip){
-		MessageCreator messageCreator = new MessageCreator() {
-			public Message createMessage(Session session) {
-				ObjectMessage message = null;
-				try {
-					message = session.createObjectMessage();
-					message.setObject(ip);
-				} catch (JMSException e) {
-					logger.error("初始化jms失败", e);
-				}
-				return (Message) message;
-			}
-		};
-		jmsTemplate.send(this.destination, messageCreator);
-		logger.info("send ip=" + ip);
-	}
+
+    private static final Log logger = LogFactory.getLog(IpNotifier.class);
+
+    @Autowired
+    @Qualifier("jmsTemplate")
+    private JmsTemplate jmsTemplate;
+    @Autowired
+    @Qualifier("ipQueue")
+    private Destination destination;
+
+    public void send(final String ip) {
+        MessageCreator messageCreator = new MessageCreator() {
+            public Message createMessage(Session session) {
+                ObjectMessage message = null;
+                try {
+                    message = session.createObjectMessage();
+                    message.setObject(ip);
+                } catch (JMSException e) {
+                    logger.error("初始化jms失败", e);
+                }
+                return (Message) message;
+            }
+        };
+        jmsTemplate.send(this.destination, messageCreator);
+        logger.info("send ip=" + ip);
+    }
 }

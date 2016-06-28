@@ -13,19 +13,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SpringContextUtils implements ApplicationContextAware {
-	
-	public static ApplicationContext context;
 
-	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		// TODO Auto-generated method stub
-		SpringContextUtils.context = context;
-	}
+    public static ApplicationContext context;
 
-	/**
+    @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        // TODO Auto-generated method stub
+        SpringContextUtils.context = context;
+    }
+
+    /**
      * 根据提供的bean名称得到相应的服务类
      * 
-     * @param name bean name.
+     * @param name
+     *            bean name.
      * @return the instance of bean.
      */
     public static Object getBean(String name) {

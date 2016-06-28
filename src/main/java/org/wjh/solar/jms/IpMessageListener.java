@@ -12,20 +12,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class IpMessageListener implements MessageListener {
 
-	private static final Log logger = LogFactory.getLog(IpMessageListener.class);
+    private static final Log logger = LogFactory.getLog(IpMessageListener.class);
 
-	@Override
-	public void onMessage(Message msg) {
-		// TODO Auto-generated method stub
-		ObjectMessage objMsg = (ObjectMessage) msg;
-		try {
-			String ip = (String) objMsg.getObject();
-			logger.info("receive ip=" + ip);
-		} catch (JMSException e) {
-			logger.error("获取消息内容时出错", e);
-		} catch (Exception e) {
-			logger.error("IpMessageListener出错", e);
-		}
-	}
+    @Override
+    public void onMessage(Message msg) {
+        // TODO Auto-generated method stub
+        ObjectMessage objMsg = (ObjectMessage) msg;
+        try {
+            String ip = (String) objMsg.getObject();
+            logger.info("receive ip=" + ip);
+        } catch (JMSException e) {
+            logger.error("获取消息内容时出错", e);
+        } catch (Exception e) {
+            logger.error("IpMessageListener出错", e);
+        }
+    }
 
 }

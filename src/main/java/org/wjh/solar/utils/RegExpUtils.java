@@ -11,19 +11,19 @@ import java.util.regex.Pattern;
  */
 public class RegExpUtils {
 
-	public static boolean isMatcher(String regExp, String source) {
-		Pattern pattern = Pattern.compile(regExp);
-		Matcher matcher = pattern.matcher(source);
-		if (matcher.find()) {
-			return true;
-		}
-		return false;
-	}
+    public static boolean isMatcher(String regExp, String source) {
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(source);
+        if (matcher.find()) {
+            return true;
+        }
+        return false;
+    }
 
-	public static Matcher getMatcher(String regExp, String source) {
-		Pattern pattern = Pattern.compile(regExp);
-		Matcher matcher = pattern.matcher(source);
-		matcher.find();
-		return matcher;
-	}
+    public static Matcher getMatcher(String regExp, String source) {
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(source);
+        matcher.find();
+        return matcher;
+    }
 }

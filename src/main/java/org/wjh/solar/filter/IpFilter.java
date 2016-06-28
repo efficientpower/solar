@@ -22,25 +22,25 @@ import org.wjh.solar.utils.SpringContextUtils;
  */
 public class IpFilter implements Filter {
 
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
+    @Override
+    public void destroy() {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		IpNotifier ipNotifier = SpringContextUtils.getBean(IpNotifier.class);
-		ipNotifier.send(IpUtils.getIp((HttpServletRequest) request));
-		chain.doFilter(request, response);
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        // TODO Auto-generated method stub
+        IpNotifier ipNotifier = SpringContextUtils.getBean(IpNotifier.class);
+        ipNotifier.send(IpUtils.getIp((HttpServletRequest) request));
+        chain.doFilter(request, response);
+    }
 
-	@Override
-	public void init(FilterConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+    @Override
+    public void init(FilterConfig config) throws ServletException {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
 }
