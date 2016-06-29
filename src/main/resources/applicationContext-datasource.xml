@@ -2,7 +2,79 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
 	default-autowire="byName" default-lazy-init="false">
-	
+
+	<!-- mysql数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>${jdbc.driver}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property name="maxActive">
+			<value>20</value>
+		</property>
+		<property name="maxIdle">
+			<value>3</value>
+		</property>
+		<property name="maxWait">
+			<value>30000</value>
+		</property>
+		<property name="defaultAutoCommit">
+			<value>true</value>
+		</property>
+		<property name="testOnBorrow">
+			<value>true</value>
+		</property>
+		<property name="testWhileIdle">
+			<value>true</value>
+		</property>
+		<property name="validationQuery">
+			<value>select 1 ;</value>
+		</property>
+	</bean>
+	<bean id="ibatisConfigClasspathResource" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg>
+			<value>mapping/sql-map-config.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" ref="ibatisConfigClasspathResource" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="sqlMapClientTemplate" class=" org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManagerR" />
+
+	<!-- MongoDB -->
+	<bean id="mongodbUri" class="com.mongodb.MongoClientURI">
+		<constructor-arg index="0" value="${mongo.url}" />
+	</bean>
+	<bean id="mongo" class="com.mongodb.MongoClient">
+		<constructor-arg index="0" ref="mongodbUri" />
+	</bean>
+
+	<bean id="morphiaBean" class="org.wjh.solar.morphia.IpMorphiaBean">
+		<property name="mapPackage" value="org.wjh.solar.domain.mongo" />
+		<property name="mongo" ref="mongo" />
+		<property name="dbName" value="solar" />
+	</bean>
+
+	<!-- memcached 客户端 -->
 	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
 		<property name="servers" value="${memcached_address_list}" />
 		<property name="protocol" value="BINARY" />
@@ -21,5 +93,4 @@
 		<property name="failureMode" value="Redistribute" />
 		<property name="useNagleAlgorithm" value="false" />
 	</bean>
-	<alias name="memcachedClient" alias="sharedMemcachedClient" />
 </beans>
