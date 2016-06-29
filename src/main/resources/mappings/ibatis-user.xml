@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+	<resultMap id="UserMap" class="org.wjh.solar.domain.User">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+		<result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="INTEGER" />
+		<result column="create_time" property="CreateTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="UpdateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<cacheModel type="LRU" id="cache">
+		<flushInterval hours="2" />
+		<flushOnExecute statement="User.insert" />
+		<flushOnExecute statement="User.update" />
+		<flushOnExecute statement="User.delete" />
+	</cacheModel>
+
+	<select id="get" parameterClass="string" resultMap="UserMap">
+		select * from user where user_id=#userId#
+	</select>
+	
+</sqlMap>
