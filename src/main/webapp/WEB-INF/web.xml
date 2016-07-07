@@ -35,7 +35,7 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>ipFilter</filter-name>
-		<url-pattern>*</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 
 	<!-- Servlet和Servlet mapping -->
@@ -46,6 +46,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:dispatcher-servlet.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
