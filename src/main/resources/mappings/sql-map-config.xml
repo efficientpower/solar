@@ -10,5 +10,5 @@
 		defaultStatementTimeout="3600" statementCachingEnabled="true"
 		classInfoCacheEnabled="true" />
 
-	<sqlMap resource="mapping/ibatis-user.xml" />
+	<sqlMap resource="mappings/ibatis-user.xml" />
 </sqlMapConfig>

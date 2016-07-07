@@ -41,7 +41,7 @@
 	</bean>
 	<bean id="ibatisConfigClasspathResource" class="org.springframework.core.io.ClassPathResource">
 		<constructor-arg>
-			<value>mapping/sql-map-config.xml</value>
+			<value>mappings/sql-map-config.xml</value>
 		</constructor-arg>
 	</bean>
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
@@ -58,7 +58,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManagerR" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- MongoDB -->
 	<bean id="mongodbUri" class="com.mongodb.MongoClientURI">
