@@ -40,6 +40,13 @@ public class CmdUtils {
 
     public static Process execP(String cmdLine) throws Exception {
         Process proc  = Runtime.getRuntime().exec(cmdLine);
+        /*以下输出是为了防止输出过多而阻塞*/
+        BufferedReader in = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+        String line;
+        while ((line = in.readLine()) != null) {
+            System.out.println(line);
+        }
+        in.close();
         proc.waitFor();
         if (proc.exitValue() != 0) {
             throw new Exception("cmd error!!");
