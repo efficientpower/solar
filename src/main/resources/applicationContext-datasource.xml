@@ -71,7 +71,7 @@
 		<constructor-arg index="0" ref="mongodbUri" />
 	</bean>
 
-	<bean id="morphiaBean" class="org.wjh.solar.morphia.IpMorphiaBean">
+	<bean id="ipMorphiaBean" class="org.wjh.solar.morphia.IpMorphiaBean">
 		<property name="mapPackage" value="org.wjh.solar.domain.mongo" />
 		<property name="mongo" ref="mongo" />
 		<property name="dbName" value="solar" />
