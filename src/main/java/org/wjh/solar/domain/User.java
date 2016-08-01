@@ -1,6 +1,7 @@
 package org.wjh.solar.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户表
@@ -12,13 +13,17 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = -3674105634919189554L;
 
+    /* 性别 0|女 1|男 */
+    public static final Integer GENDER_MALE = 1;
+    public static final Integer GENDER_FEMALE = 0;
+
     private Integer id;
     private String userId;
     private String nickName;
     private String passWord;
     private Integer gender;
-    private String createTime;
-    private String updateTime;
+    private Date createTime;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -60,19 +65,19 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
