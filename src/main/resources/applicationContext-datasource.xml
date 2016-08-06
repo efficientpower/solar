@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
 	default-autowire="byName" default-lazy-init="false">
 
-	<!-- mysql数据源 -->
+	<!-- MySQL数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName">
 			<value>${jdbc.driver}</value>
@@ -61,6 +61,7 @@
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<property name="dataSource" ref="dataSource"/> 
 	</bean> 
+	<!-- 注解支持的事务 -->
 	<tx:annotation-driven transaction-manager="txManager" />
 		
 	<!-- MongoDB -->

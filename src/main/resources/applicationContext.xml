@@ -16,6 +16,7 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<context:annotation-config />
+	<!-- 注解定时任务支持 -->
 	<task:annotation-driven />
 	<!-- 启动AspectJ支持 -->
 	<aop:aspectj-autoproxy />
