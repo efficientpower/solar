@@ -27,7 +27,7 @@ public class SolarWebSocketServer {
 
         // Send 100 messages to the client every 2 seconds
         int sentMessages = 0;
-        while (sentMessages < 100) {
+        while (sentMessages < 10000) {
             Thread.sleep(2000);
             session.getBasicRemote().sendText("This is an intermediate server message. Count: " + sentMessages);
             sentMessages++;

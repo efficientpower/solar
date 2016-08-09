@@ -21,8 +21,7 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
-        <!-- 如果是tomcat7及其以上版本，自带websocket,引入会导致冲突,设置scope为provided-->
+		<!-- 如果是tomcat7及其以上版本，自带websocket,引入会导致冲突,设置scope为provided -->
 		<dependency>
 			<groupId>javax.websocket</groupId>
 			<artifactId>javax.websocket-api</artifactId>
@@ -44,7 +43,7 @@
 			<artifactId>hibernate-validator-annotation-processor</artifactId>
 			<version>4.1.0.Final</version>
 		</dependency>
-
+		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
@@ -115,7 +114,7 @@
 			<artifactId>spring-ibatis</artifactId>
 			<version>2.0.8</version>
 		</dependency>
-
+		<!-- apache commons -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -166,7 +165,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.2</version>
 		</dependency>
-
+		<!-- slf4j日志 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -187,7 +186,7 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
 		</dependency>
-
+		<!-- freemarker|velocity模板,dwr框架 -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
@@ -203,7 +202,7 @@
 			<artifactId>dwr</artifactId>
 			<version>2.0.3</version>
 		</dependency>
-
+		<!-- json -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -214,7 +213,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-
+		<!-- Memcached，MongoDB, MySQL -->
 		<dependency>
 			<groupId>net.spy</groupId>
 			<artifactId>spymemcached</artifactId>
@@ -235,23 +234,35 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.21</version>
 		</dependency>
-
+		<!-- ActiveMQ消息队列 -->
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-core</artifactId>
 			<version>5.7.0</version>
 		</dependency>
+		<!-- zookeeper 分布式锁 -->
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
-			<version>3.4.3</version>
+			<version>3.4.5</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>2.1.0-incubating</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>2.1.0-incubating</version>
+		</dependency>
+		<!-- compass全文搜索引擎 -->
 		<dependency>
 			<groupId>org.compass-project</groupId>
 			<artifactId>compass</artifactId>
 			<version>2.2.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
