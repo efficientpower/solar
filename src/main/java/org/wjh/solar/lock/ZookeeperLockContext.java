@@ -10,7 +10,6 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.data.Stat;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class ZookeeperLockContext implements InitializingBean {
 
@@ -24,9 +23,6 @@ public class ZookeeperLockContext implements InitializingBean {
     private int concurrency; // 1000
     private HashCalculator hashCalculator = new HashCalculator(concurrency);
     private CuratorFramework client;
-
-    @Autowired
-    private ZookeeperUtils zookeeperUtils;
 
     public String getBizStage() {
         return bizStage;

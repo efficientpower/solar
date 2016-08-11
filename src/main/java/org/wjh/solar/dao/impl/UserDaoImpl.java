@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getByUserId(String userId) {
         // TODO Auto-generated method stub
-        return (User) template.insert("User.getByUserId", userId);
+        return (User) template.queryForObject("User.getByUserId", userId);
     }
 
     @Override

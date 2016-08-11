@@ -44,4 +44,10 @@ public class UserServiceImpl implements UserService {
         return userDao.list(offset, limit, orderBy);
     }
 
+    @Override
+    public User getByUserId(String userId) {
+        // TODO Auto-generated method stub
+        return userDao.getByUserId(userId);
+    }
+
 }
