@@ -16,7 +16,6 @@ import org.wjh.solar.utils.EncryptUtils;
 
 @Controller
 public class MobileSolarController extends BaseController {
-
     private static Log logger = LogFactory.getLog(MobileSolarController.class);
     @Autowired
     @Qualifier("solarLocker")
@@ -26,17 +25,18 @@ public class MobileSolarController extends BaseController {
     @ResponseBody
     public AjaxResult<Object> get(@RequestParam("userId") String userId) {
         AjaxResult<Object> res = new AjaxResult<Object>();
+        ZookeeperLock lock = solarLocker.getLock("solar");
         try {
-            ZookeeperLock lock = solarLocker.getLock("solar");
             lock.lock();
             EncryptUtils.Md5Utils.getMd5OfString("123456");
             User user = userService.getByUserId(userId);
             res.setData(user);
-            lock.unlock();
         } catch (Exception e) {
             logger.error("get failed ", e);
             res.setFlag(AjaxResult.MobileCode.FAIL.intValue());
             res.setMessage(AjaxResult.MobileCode.FAIL.getMessage());
+        }finally{
+            lock.unlock();
         }
         return res;
     }
