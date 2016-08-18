@@ -1,12 +1,8 @@
 package org.wjh.solar.web;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -22,7 +18,8 @@ import org.wjh.solar.utils.RegExpUtils;
 
 @Controller
 public class UploadController {
-    private static final int LIMIT_SIZE = 200*1024*1024;
+    private static final int BUFFFER_SIZE = 2*1024*1024;
+    private static final int LIMIT_SIZE = 2000*1024*1024;
     private static Log logger = LogFactory.getLog(UploadController.class);
 
     @RequestMapping("/solar/upload.do")
@@ -45,13 +42,19 @@ public class UploadController {
                  res.setMessage("文件超过" + LIMIT_SIZE);
                  return res;
              }
-             String file = "/home/wangjihui/ssssss";
-             InputStream ins = uploadFile.getInputStream();
-             BufferedInputStream buffIns = new BufferedInputStream(ins);
-             BufferedOutputStream buffOus = new BufferedOutputStream(new FileOutputStream(new File(file)));
-             byte buf[] = new byte[10*1024*1024];
-             while(buffIns.read(buf) != -1){
-                 buffOus.write(buf);
+             String file = "/home/wangjihui/MSHHDD";
+             BufferedInputStream buffIns = new BufferedInputStream(uploadFile.getInputStream(),BUFFFER_SIZE);
+             RandomAccessFile rdf = new RandomAccessFile(file, "rw");
+             try{
+                 rdf.seek(rdf.length()); 
+                 byte buf[] = new byte[BUFFFER_SIZE];
+                 int length;
+                 while((length= buffIns.read(buf)) > -1){
+                     rdf.write(buf,0,length);
+                 }
+             }finally{
+                 buffIns.close();
+                 rdf.close();
              }
         } catch (Exception e) {
             logger.error("upload failed! ", e);
