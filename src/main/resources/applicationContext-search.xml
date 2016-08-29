@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+    <bean id="compass" class="org.compass.spring.LocalCompassBean">
+        <property name="configLocation" value="classpath:search/compass.cfg.xml"/>
+        <property name="compassSettings">
+            <props>
+                <prop key="compass.engine.connection">/home/solr/lucene</prop>
+                <!-- This is the default transaction handling (just explicitly setting it) -->
+                <prop key="compass.transaction.factory">org.compass.spring.transaction.SpringSyncTransactionFactory</prop>
+                <prop key="compass.engine.highlighter.default.formatter.simple.pre"> <![CDATA[<font color="red"><b>]]> </prop>
+                <prop key="compass.engine.highlighter.default.formatter.simple.post"> <![CDATA[</b></font>]]> </prop>
+            </props>
+        </property>
+        <property name="transactionManager" ref="txManager"/>
+        <property name="classMappings">
+            <list>
+                <value>org.wjh.solar.domain.User</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="compassTemplate" class="org.compass.core.CompassTemplate">
+        <property name="compass" ref="compass"/>
+    </bean>
+    <bean id="ibatisGpsDevice" class="org.compass.gps.device.ibatis.SqlMapClientGpsDevice">
+        <property name="name" value="ibatis" />
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+        <property name="selectStatementsIds">
+            <list>
+                <value>User.getAllUser</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="compassGps" class="org.compass.gps.impl.SingleCompassGps" init-method="start" destroy-method="stop">
+        <property name="compass" ref="compass" />
+        <property name="gpsDevices">
+            <list>
+                <ref local="ibatisGpsDevice"/>
+            </list>
+        </property>
+    </bean>
+    <!-- 定时重建索引(利用quartz)或随Spring ApplicationContext启动而重建索引 -->
+    <bean id="compassIndexBuilder" class="com.netease.movielib.search.CompassIndexBuilder" lazy-init="false">
+        <property name="compassGps" ref="compassGps" />
+        <property name="lazyTime" value="10" />
+    </bean>
+
+</beans>

@@ -31,8 +31,9 @@
 		</property>
 	</bean>
 
+    <import resource="applicationContext-common.xml" />
 	<import resource="applicationContext-datasource.xml" />
 	<import resource="applicationContext-jms.xml" />
-	<import resource="applicationContext-common.xml" />
 	<import resource="applicationContext-zookeeper.xml"/>
+	<import resource="applicationContext-search.xml"/>
 </beans>
