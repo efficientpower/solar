@@ -8,9 +8,8 @@ public class CompassIndexThread extends Thread {
 
     private Log log = LogFactory.getLog(CompassIndexThread.class);
 
-    // 索引操作线程延时启动的时间，单位为秒
-    private int lazyTime = 10;
-
+    // 索引操作线程延时启动的时间，单位为ms
+    private int lazyTime = 10 * 1000;
     private CompassGps compassGps;
 
     public CompassIndexThread(CompassGps compassGps) {
@@ -20,13 +19,13 @@ public class CompassIndexThread extends Thread {
     @Override
     public void run() {
         try {
-            Thread.sleep(lazyTime * 1000);
-            log.info("begin MOVIELIB compass index...");
+            Thread.sleep(lazyTime);
+            log.info("compass index begin...");
             long beginTime = System.currentTimeMillis();
             // 重建索引.如果compass实体中定义的索引文件已存在，索引过程中会建立临时索引，索引完成后再进行覆盖.
             compassGps.index();
             long costTime = System.currentTimeMillis() - beginTime;
-            log.info("MOVIELIB compss index finished. use " + costTime + " milliseconds");
+            log.info("compss index finished. use " + costTime + " milliseconds");
         } catch (InterruptedException e) {
             log.error("索引线程被中断：" + e.getMessage(), e);
         }

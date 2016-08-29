@@ -9,22 +9,8 @@ public class CompassIndexBuilder implements InitializingBean {
 
     private static final Log logger = LogFactory.getLog(CompassIndexBuilder.class);
 
-    // 是否需要建立索引，可被设置为false使本Builder失效.
-    private boolean buildIndexOnStart = false;
-
-    // 索引操作线程延时启动的时间，单位为秒
-    private int lazyTime = 10;
-
     // Compass封装
     private CompassGps compassGps;
-
-    public void setBuildIndexOnStart(boolean buildIndex) {
-        this.buildIndexOnStart = buildIndex;
-    }
-
-    public void setLazyTime(int lazyTime) {
-        this.lazyTime = lazyTime;
-    }
 
     public void setCompassGps(CompassGps compassGps) {
         this.compassGps = compassGps;
