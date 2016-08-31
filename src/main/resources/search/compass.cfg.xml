@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <compass-core-config xmlns="http://www.compass-project.org/schema/core-config"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.compass-project.org/schema/core-config http://www.compass-project.org/schema/compass-core-config-2.1.xsd">
+	xsi:schemaLocation="http://www.compass-project.org/schema/core-config  
+    http://www.compass-project.org/schema/compass-core-config-2.2.xsd">
 
 	<compass name="default">
 		<connection>
@@ -11,10 +12,10 @@
 			<converter name="date" type="org.compass.core.converter.basic.DateConverter">
 				<setting name="format" value="yyyyMMddHHmmss" />
 			</converter>
-			<converter name="bool" type="org.compass.core.converter.basic.BooleanConverter"/>
+			<converter name="bool" type="org.compass.core.converter.basic.BooleanConverter" />
 		</converters>
 		<searchEngine>
-			<analyzer name="PaodingAnalyzer" type="CustomAnalyzer" analyzerClass="net.paoding.analysis.analyzer.PaodingAnalyzer"/>
+			<analyzer name="PaodingAnalyzer" type="CustomAnalyzer" analyzerClass="net.paoding.analysis.analyzer.PaodingAnalyzer" />
 		</searchEngine>
 	</compass>
 </compass-core-config>  

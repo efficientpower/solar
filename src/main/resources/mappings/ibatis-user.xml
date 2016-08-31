@@ -70,4 +70,7 @@
 	<delete id="deleteByUserId" parameterClass="string">
         delete from user where user_id=#userId#
     </delete>
+    <select id="getAllUser" resultMap="UserMap">
+        select * from user
+    </select>
 </sqlMap>

@@ -3,12 +3,19 @@ package org.wjh.solar.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.compass.annotations.Index;
+import org.compass.annotations.Searchable;
+import org.compass.annotations.SearchableId;
+import org.compass.annotations.SearchableProperty;
+import org.compass.annotations.Store;
+
 /**
  * 用户表
  * 
  * @author wangjihui
  *
  */
+@Searchable(alias = "user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -3674105634919189554L;
@@ -18,7 +25,9 @@ public class User implements Serializable {
     public static final Integer GENDER_FEMALE = 0;
 
     private Integer id;
+    @SearchableId(override = true)
     private String userId;
+    @SearchableProperty(index = Index.ANALYZED,store=Store.YES, analyzer = "PaodingAnalyzer")
     private String nickName;
     private String passWord;
     private Integer gender;

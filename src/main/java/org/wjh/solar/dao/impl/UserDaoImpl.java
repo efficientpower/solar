@@ -64,4 +64,11 @@ public class UserDaoImpl implements UserDao {
         template.insert("User.deleteByUserId", userId);
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<User> getAllUser() {
+        // TODO Auto-generated method stub
+        return (List<User>)template.queryForList("User.getAllUser");
+    }
+
 }
