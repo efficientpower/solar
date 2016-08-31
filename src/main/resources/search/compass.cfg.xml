@@ -6,7 +6,7 @@
 
 	<compass name="default">
 		<connection>
-			<file path="/home/solar/lucene" />
+			<file path="/home/wangjihui/data/lucene" />
 		</connection>
 		<converters>
 			<converter name="date" type="org.compass.core.converter.basic.DateConverter">

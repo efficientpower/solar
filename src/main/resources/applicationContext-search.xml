@@ -19,7 +19,7 @@
         <property name="configLocation" value="classpath:search/compass.cfg.xml"/>
         <property name="compassSettings">
             <props>
-                <prop key="compass.engine.connection">/home/solr/lucene</prop>
+                <prop key="compass.engine.connection">/home/wangjihui/data/lucene</prop>
                 <!-- This is the default transaction handling (just explicitly setting it) -->
                 <prop key="compass.transaction.factory">org.compass.spring.transaction.SpringSyncTransactionFactory</prop>
                 <prop key="compass.engine.highlighter.default.formatter.simple.pre"> <![CDATA[<font color="red"><b>]]> </prop>
