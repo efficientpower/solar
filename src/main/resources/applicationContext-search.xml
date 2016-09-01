@@ -14,7 +14,6 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-
     <bean id="compass" class="org.compass.spring.LocalCompassBean">
         <property name="configLocation" value="classpath:search/compass.cfg.xml"/>
         <property name="compassSettings">
@@ -48,9 +47,9 @@
     <bean id="compassGps" class="org.compass.gps.impl.SingleCompassGps" init-method="start" destroy-method="stop">
         <property name="compass" ref="compass" />
         <property name="gpsDevices">
-            <list>
-                <ref local="ibatisGpsDevice"/>
-            </list>
+            <bean class="org.compass.spring.device.SpringSyncTransactionGpsDeviceWrapper">  
+                     <property name="gpsDevice" ref="ibatisGpsDevice"/>  
+             </bean>
         </property>
     </bean>
     <!-- 定时重建索引(利用quartz)或随Spring ApplicationContext启动而重建索引 -->

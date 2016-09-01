@@ -25,7 +25,7 @@ public class CompassIndexBuilder implements InitializingBean {
         logger.info("start to rebuildIndexOnStart!!!");
         Thread indexThread = new CompassIndexThread(compassGps);
         indexThread.setDaemon(true);
-        indexThread.setName("Compass Indexer");
+        indexThread.setName("CompassIndexer");
         indexThread.start();
         logger.info("end to rebuildIndexOnStart!!!");
     }
@@ -34,7 +34,7 @@ public class CompassIndexBuilder implements InitializingBean {
         logger.info("start to rebuildIndex!!!");
         Thread indexThread = new CompassIndexThread(compassGps);
         indexThread.setDaemon(true);
-        indexThread.setName("Compass Indexer");
+        indexThread.setName("CompassIndexer");
         indexThread.start();
         logger.info("end to rebuildIndex!!!");
     }
@@ -43,7 +43,7 @@ public class CompassIndexBuilder implements InitializingBean {
         logger.info("start to flushIndex!!!");
         Thread indexThread = new CompassIndexThread(compassGps);
         indexThread.setDaemon(true);
-        indexThread.setName("Compass Indexer");
+        indexThread.setName("CompassIndexer");
         indexThread.start();
         logger.info("end to flushIndex!!!");
     }
