@@ -1,5 +1,9 @@
 package org.wjh.solar.web;
 
-public class BaseController {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.wjh.solar.service.UserService;
 
+public class BaseController {
+    @Autowired
+    protected UserService userService;
 }
