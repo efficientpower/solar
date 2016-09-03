@@ -8,8 +8,7 @@
 		<param name="threshold" value="info" />
 		<param value="UTF-8" name="Encoding" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%C{1}] %m%n"
-				name="ConversionPattern" />
+			<param value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%C{1}] %m%n" name="ConversionPattern" />
 		</layout>
 	</appender>
 
@@ -24,21 +23,6 @@
 		</layout>
 	</appender>
 
-	<appender name="bigdataAppender" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="append" value="true" />
-		<param name="Encoding" value="UTF-8" />
-		<param name="datePattern" value="'.'yyyyMMddHH" />
-		<param name="file" value="${log_dir_root}/solar/bigdata/bigdata.log" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%m%n" />
-		</layout>
-	</appender>
-
-	<logger name="bigdata_log_name" additivity="false">
-		<level value="info" />
-		<appender-ref ref="bigdataAppender" />
-	</logger>
-	
 	<root>
 		<level value="info" />
 		<appender-ref ref="rootLogStdoutAppender" />
