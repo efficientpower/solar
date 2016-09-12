@@ -10,11 +10,6 @@
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 
-	<!-- Listener -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
 	<!-- Filter和Filter mapping -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -37,6 +32,11 @@
 		<filter-name>ipFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+
+	<!-- Listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 	<!-- Servlet和Servlet mapping -->
 	<servlet>

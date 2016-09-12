@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- 如果是tomcat7及其以上版本，自带websocket,引入会导致冲突,设置scope为provided -->
