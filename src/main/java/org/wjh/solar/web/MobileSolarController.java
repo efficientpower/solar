@@ -2,6 +2,7 @@ package org.wjh.solar.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class MobileSolarController extends BaseController {
         AjaxResult<Object> res = new AjaxResult<Object>();
         ZookeeperLock lock = solarLocker.getLock("solar");
         try {
+        	AopUtils.isAopProxy(solarLocker);
+        	AopUtils.isCglibProxy(solarLocker);
+        	AopUtils.isJdkDynamicProxy(solarLocker);
             lock.lock();
             EncryptUtils.Md5Utils.getMd5OfString("123456");
             User user = userService.getByUserId(userId);
