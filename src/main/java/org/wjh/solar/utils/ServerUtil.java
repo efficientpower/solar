@@ -2,7 +2,6 @@ package org.wjh.solar.utils;
 
 import java.io.CharArrayWriter;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -207,11 +206,6 @@ public class ServerUtil {
 	}
 	
 	public static void main(String args[]){
-		for(int i=0; i<200000000; i++){
-			String pid="M"+getid();
-			String cmtId = pid.substring(0, 1) + IntUtil.c10to64(IntUtil.c32to10(pid.substring(1)));
-			String cmtid62 = pid.substring(0, 1) + IntUtil.c10to62(IntUtil.c32to10(pid.substring(1)));
-			System.out.println(pid+"======"+cmtId+"=========="+cmtid62);
-		}
+		
 	}
 }
