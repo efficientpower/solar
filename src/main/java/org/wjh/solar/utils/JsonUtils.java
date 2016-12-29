@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.DeserializationConfig.Feature;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
 
 /**
  * JSON工具类
@@ -24,12 +25,13 @@ public class JsonUtils {
     @SuppressWarnings("deprecation")
     private synchronized static ObjectMapper getObjectMapper() {
         if (mapper == null) {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
+            //DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
             mapper = new ObjectMapper();
             // JSON串和对象字段不对应时候,只解析有对应的映射
             mapper.getDeserializationConfig().set(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            mapper.getSerializationConfig().setDateFormat(df);
-            mapper.getDeserializationConfig().setDateFormat(df);
+            //mapper.getSerializationConfig().setDateFormat(df);
+            //mapper.configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, true);
+            //mapper.getDeserializationConfig().setDateFormat(df);
         }
         return mapper;
     }
@@ -80,4 +82,5 @@ public class JsonUtils {
             return "";
         }
     }
+    
 }

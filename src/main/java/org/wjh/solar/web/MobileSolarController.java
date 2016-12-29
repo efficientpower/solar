@@ -28,9 +28,9 @@ public class MobileSolarController extends BaseController {
         AjaxResult<Object> res = new AjaxResult<Object>();
         ZookeeperLock lock = solarLocker.getLock("solar");
         try {
-        	AopUtils.isAopProxy(solarLocker);
-        	AopUtils.isCglibProxy(solarLocker);
-        	AopUtils.isJdkDynamicProxy(solarLocker);
+            AopUtils.isAopProxy(solarLocker);
+            AopUtils.isCglibProxy(solarLocker);
+            AopUtils.isJdkDynamicProxy(solarLocker);
             lock.lock();
             EncryptUtils.Md5Utils.getMd5OfString("123456");
             User user = userService.getByUserId(userId);
