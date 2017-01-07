@@ -18,16 +18,18 @@ import org.wjh.solar.utils.SpringContextUtils;
  * 记录用户IP过滤器
  * 
  * @author wangjihui
- *
+ *         
  */
 public class IpFilter implements Filter {
-
+    
+    private FilterConfig config;
+    
     @Override
-    public void destroy() {
+    public void init(FilterConfig config) throws ServletException {
         // TODO Auto-generated method stub
-
+        this.config = config;
     }
-
+    
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -36,11 +38,15 @@ public class IpFilter implements Filter {
         ipNotifier.send(IpUtils.getIp((HttpServletRequest) request));
         chain.doFilter(request, response);
     }
-
+    
     @Override
-    public void init(FilterConfig config) throws ServletException {
+    public void destroy() {
         // TODO Auto-generated method stub
-
+        
     }
-
+    
+    public FilterConfig getFilterConfig() {
+        return config;
+    }
+    
 }
