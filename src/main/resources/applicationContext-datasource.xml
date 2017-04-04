@@ -71,7 +71,6 @@
 	<bean id="mongo" class="com.mongodb.MongoClient">
 		<constructor-arg index="0" ref="mongodbUri" />
 	</bean>
-
 	<bean id="ipMorphiaBean" class="org.wjh.solar.morphia.IpMorphiaBean">
 		<property name="mapPackage" value="org.wjh.solar.domain.mongo" />
 		<property name="mongo" ref="mongo" />
@@ -97,4 +96,26 @@
 		<property name="failureMode" value="Redistribute" />
 		<property name="useNagleAlgorithm" value="false" />
 	</bean>
+	
+	<!-- Redis -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}"/> 
+        <property name="maxIdle" value="${redis.maxIdle}"/> 
+        <property name="minIdle" value="${redis.minIdle}"/>
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/> 
+        <property name="testOnReturn" value="${redis.testOnReturn}"/> 
+        <property name="testWhileIdle" value="${redis.testWhileIdle}"/>
+    </bean>
+     <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool"  scope="singleton">
+        <constructor-arg index="0" ref="jedisPoolConfig" />
+        <constructor-arg index="1">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <constructor-arg name="host" value="${redis.host}"/>
+                    <constructor-arg name="port" value="${redis.port}"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>

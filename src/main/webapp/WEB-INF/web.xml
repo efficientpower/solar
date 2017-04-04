@@ -3,20 +3,23 @@
 
 <web-app>
 	<display-name>solar</display-name>
+	<description>maven webapp</description>
 
 	<!-- 全局上下文参数 -->
 	<context-param>
+		<description>spring根上下文配置文件</description>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	
-    <!-- Listener -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    
+
+	<!-- Listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<!-- Filter和Filter mapping -->
 	<filter>
+		<description>编码过滤器</description>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
@@ -25,6 +28,7 @@
 		</init-param>
 	</filter>
 	<filter>
+		<description>IP过滤器</description>
 		<filter-name>ipFilter</filter-name>
 		<filter-class>org.wjh.solar.filter.IpFilter</filter-class>
 	</filter>
@@ -38,10 +42,10 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 
-	
 
 	<!-- Servlet和Servlet mapping -->
 	<servlet>
+		<description>SpringMVC前段分发Servlet</description>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>

@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<appender name="rootLogStdoutAppender" class="org.apache.log4j.ConsoleAppender" >
-		<param name="threshold" value="info" />
+		<param name="threshold" value="debug" />
 		<param value="UTF-8" name="Encoding" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%C{1}] %m%n" name="ConversionPattern" />
@@ -22,7 +22,7 @@
 	</appender>
 
 	<root>
-		<level value="info" />
+		<level value="debug" />
 		<appender-ref ref="rootLogStdoutAppender" />
 		<appender-ref ref="rootLogFileAppender"/>
 	</root>
